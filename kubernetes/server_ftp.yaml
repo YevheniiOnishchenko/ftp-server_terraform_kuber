@@ -6,12 +6,42 @@ metadata:
   namespace: default
 spec:
   selector:
-    app: ftp-service
-  type: ClusterIP
+    app: ftp-server
+  type: LoadBalancer
   ports:
-  - name: ftp-service
+  - name: ftp-service-port
     protocol: TCP
     port: 21
+  - name: ftp-service-port--1
+    protocol: TCP
+    port: 30000
+  - name: ftp-service-port-0
+    protocol: TCP
+    port: 30001
+  - name: ftp-service-port-1
+    protocol: TCP
+    port: 30002
+  - name: ftp-service-port-2
+    protocol: TCP
+    port: 30003
+  - name: ftp-service-port-3
+    protocol: TCP
+    port: 30004
+  - name: ftp-service-port-4
+    protocol: TCP
+    port: 30005
+  - name: ftp-service-port-5
+    protocol: TCP
+    port: 30006
+  - name: ftp-service-port-6
+    protocol: TCP
+    port: 30007
+  - name: ftp-service-port-7
+    protocol: TCP
+    port: 30008
+  - name: ftp-service-port-8
+    protocol: TCP
+    port: 30009
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -24,7 +54,7 @@ spec:
   selector:
     matchLabels:
       app: ftp-server
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -42,7 +72,7 @@ spec:
             memory: 100Mi
         env:
         - name: PUBLICHOST
-          value: "localhost"
+          value: "0.0.0.0"
         - name: FTP_USER_NAME
           value: "bob"
         - name: FTP_USER_PASS
