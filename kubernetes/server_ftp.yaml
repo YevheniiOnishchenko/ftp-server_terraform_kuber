@@ -52,10 +52,7 @@ spec:
         ports:
         - containerPort:  21
           protocol: TCP
-          name:  ftp-server
-        volumeMounts:
-        - name: localtime
-          mountPath: /etc/localtime
+          name:  ftp-server-port
       volumes:
         - name: localtime
           hostPath:
