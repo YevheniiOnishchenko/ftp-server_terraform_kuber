@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   selector:
-    app: web
+    app: web-depl
   type: LoadBalancer
   ports:
   - name: web
