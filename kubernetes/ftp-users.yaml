@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ftp-users
+data:
+  # file-like keys
+  users.conf: |
+    bob:12345:::upload
+    bib:12345:::upload
+    alice:12345:::upload
+    tom:12345:::upload
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: link-pdir
+data:
+  # file-like keys
+  link_pdir.sh: |
+    #!/bin/bash
+
+    for user in $(ls /home); do
+      if [ ! -e /shared/$user/upload ]; then
+        mkdir -p /shared/$user/upload
+      fi
+
+      mount --bind /shared/$user/upload /home/$user/upload
+    done

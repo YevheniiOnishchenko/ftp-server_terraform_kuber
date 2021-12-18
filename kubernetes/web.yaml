@@ -11,7 +11,7 @@ spec:
   ports:
   - name: web
     protocol: TCP
-    port: 8334
+    port: 80
     targetPort: 8334
 ---
 apiVersion: apps/v1
